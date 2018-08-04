@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -130,13 +129,12 @@ public class EmployeeControllerTest {
 		}
 	}
 	
-	@Ignore
 	@Test
 	public void testdisplayEmployeeByEmpId_Null()
 	{
 		when(service.getEmployeeByEmpId(null)).thenReturn(null);
 		List<EmployeeRequestBean> result=controller.displayEmployeeByEmpId(null);
-		assertNotNull(result);
+		assertNull(result);
 	}
 
 	@After
