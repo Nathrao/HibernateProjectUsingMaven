@@ -1,5 +1,11 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -84,6 +90,51 @@ public class EmployeeControllerTest {
 		EmployeeRequestBean employee = getMethodRequestBean(3, "Ram", null, 89);
 		String result = controller.saveEmployee(employee);
 		assertEquals("Invalid Designation", result);
+	}
+	
+	@Test
+	public void  testDisplayAllEmployees_NullValues()
+	{	
+		List<EmployeeRequestBean> list=new ArrayList<EmployeeRequestBean>();
+		list.add(getMethodRequestBean(123, "Ram", "SE", 89));	
+		when(service.getAllEmployees()).thenReturn(list);
+			
+		List<EmployeeRequestBean>  result=controller.displayAllEmployees();
+        assertNotNull(result);
+        for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+			EmployeeRequestBean employeeRequestBean = (EmployeeRequestBean) iterator.next();
+			
+			 assertEquals(123, employeeRequestBean.getEmpId());
+			 assertEquals("Ram", employeeRequestBean.getEname());
+			 assertEquals("SE", employeeRequestBean.getDesg());
+			 assertEquals(89, employeeRequestBean.getSalary());
+		}
+       
+	}
+	
+	@Test
+	public void testdisplayEmployeeByEmpId()
+	{
+		List<EmployeeRequestBean> list=new ArrayList<EmployeeRequestBean>();
+		when(service.getEmployeeByEmpId("123")).thenReturn(list);
+		List<EmployeeRequestBean> result=controller.displayEmployeeByEmpId("123");
+		assertNotNull(result);
+		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+			EmployeeRequestBean employeeRequestBean = (EmployeeRequestBean) iterator.next();
+			
+			assertEquals(123, employeeRequestBean.getEmpId());
+			assertEquals("Ram", employeeRequestBean.getEname());
+			assertEquals("SE", employeeRequestBean.getDesg());
+			assertEquals(89, employeeRequestBean.getSalary());
+		}
+	}
+	
+	@Test
+	public void testdisplayEmployeeByEmpId_Null()
+	{
+		when(service.getEmployeeByEmpId(null)).thenReturn(null);
+		List<EmployeeRequestBean> result=controller.displayEmployeeByEmpId(null);
+		assertNotNull(result);
 	}
 
 	@After
