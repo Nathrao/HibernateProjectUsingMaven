@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.nt.controller.EmployeeController;
 import com.nt.controller.beans.EmployeeRequestBean;
 import com.nt.employee.service.EmployeeService;
 
@@ -102,7 +101,7 @@ public class EmployeeControllerTest {
 			
 		List<EmployeeRequestBean>  result=controller.displayAllEmployees();
         assertNotNull(result);
-        for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+        for (Iterator<EmployeeRequestBean> iterator = result.iterator(); iterator.hasNext();) {
 			EmployeeRequestBean employeeRequestBean = (EmployeeRequestBean) iterator.next();
 			
 			 assertEquals(123, employeeRequestBean.getEmpId());
@@ -120,7 +119,7 @@ public class EmployeeControllerTest {
 		when(service.getEmployeeByEmpId("123")).thenReturn(list);
 		List<EmployeeRequestBean> result=controller.displayEmployeeByEmpId("123");
 		assertNotNull(result);
-		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+		for (Iterator<EmployeeRequestBean> iterator = result.iterator(); iterator.hasNext();) {
 			EmployeeRequestBean employeeRequestBean = (EmployeeRequestBean) iterator.next();
 			
 			assertEquals(123, employeeRequestBean.getEmpId());

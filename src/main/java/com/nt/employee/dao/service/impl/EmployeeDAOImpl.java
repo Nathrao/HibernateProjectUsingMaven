@@ -6,8 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
@@ -25,8 +23,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		try {
 		factory=HibernateUtil.getSessionFactory();
 		Session session=factory.openSession();
-		session.save(employee);
 		Transaction tx=session.beginTransaction();
+		session.save(employee);
 		tx.commit();
 		}catch(ConstraintViolationException e) {
 			isSuccess =false;

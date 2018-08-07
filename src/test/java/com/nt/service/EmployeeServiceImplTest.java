@@ -1,6 +1,8 @@
 package com.nt.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,12 +27,28 @@ public class EmployeeServiceImplTest {
 	}
 
 	@Test
-	public void testInsertEmployee()
-	{
-		String result=service.insertEmployee(null);
-		assertNull(result);
+	public void testInsertEmployee_WithNull() {
+		String result = service.insertEmployee(null);
+		assertEquals("Null object received", result);
 	}
-	
+
+	@Test
+	public void testInsertEmployee() {
+		EmployeeRequestBean employee = new EmployeeRequestBean();
+		employee.setEmpId(123);
+		employee.setEname("nath");
+		employee.setDesg("SE");
+		employee.setSalary(2000);
+		Employee bean = new Employee();
+		bean.setEmpId(123);
+		bean.setEname("nath");
+		bean.setDesg("SE");
+		bean.setSalary(2000);
+		when(dao.saveEmployee(bean)).thenReturn("Registration Successful");
+		String result = service.insertEmployee(employee);
+		assertEquals("Registration Successful", result);
+	}
+
 	public void teatDown() {
 		service = null;
 		dao = null;
