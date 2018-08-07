@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.nt.controller.EmployeeController;
 import com.nt.controller.beans.EmployeeRequestBean;
 import com.nt.employee.dao.service.EmployeeDAO;
 import com.nt.employee.service.EmployeeService;
@@ -15,6 +17,7 @@ import com.nt.entity.Employee;
 
 @Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
+	final static Logger		log	= Logger.getLogger(EmployeeServiceImpl.class);
 
 	@Autowired
 	@Qualifier(value = "EmployeeDAO")
@@ -30,12 +33,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	public String insertEmployee(EmployeeRequestBean employee) {
 		String msg = null;
+		
 		Employee emp = new Employee();
+		if(employee==null)
+		{
+			log.debug("employee object is null"+employee);
+		}
+		else
+		{
 		emp.setEmpId(employee.getEmpId());
 		emp.setDesg(employee.getDesg());
 		emp.setEname(employee.getEname());
 		emp.setSalary(employee.getSalary());
 		msg = dao.saveEmployee(emp);
+		}
 		return msg;
 	}
 
