@@ -17,11 +17,18 @@ import com.nt.util.HibernateUtil;
 @Repository("EmployeeDAO")
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-	private SessionFactory factory;
+	private static SessionFactory factory=HibernateUtil.getSessionFactory();
+	
+	
+	public static SessionFactory getFactory() {
+		return factory;
+	}
+	public static void setFactory(SessionFactory factory) {
+		EmployeeDAOImpl.factory = factory;
+	}
 	public String saveEmployee(Employee employee) {
 		boolean isSuccess=true;
 		try {
-		factory=HibernateUtil.getSessionFactory();
 		Session session=factory.openSession();
 		Transaction tx=session.beginTransaction();
 		session.save(employee);
@@ -35,14 +42,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return employee.getEmpId()+" is already available" ;
 	}
 	public List<Employee> fetchAllEmployees() {
-		factory=HibernateUtil.getSessionFactory();
+		
 		Session session=factory.openSession();
 		Criteria crit=session.createCriteria(Employee.class);
 		//List<Employee> list=crit.list();
 		return crit.list();
 	}
 	public List<Employee> fetchEmloyeeByEmpId(String empId) {
-		factory=HibernateUtil.getSessionFactory();
+		
 		Session session=factory.openSession();
 		Criteria crit=session.createCriteria(Employee.class);
 		//Criterion criterion=Restrictions.eq("empId", empId);
