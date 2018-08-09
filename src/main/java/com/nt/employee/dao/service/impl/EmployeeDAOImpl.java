@@ -17,44 +17,47 @@ import com.nt.util.HibernateUtil;
 @Repository("EmployeeDAO")
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-	private static SessionFactory factory=HibernateUtil.getSessionFactory();
-	
-	
+	private static SessionFactory factory = HibernateUtil.getSessionFactory();
+
 	public static SessionFactory getFactory() {
-		return factory;
+		return EmployeeDAOImpl.factory;
 	}
-	public static void setFactory(SessionFactory factory) {
+
+	public static void setFactory(final SessionFactory factory) {
 		EmployeeDAOImpl.factory = factory;
 	}
-	public String saveEmployee(Employee employee) {
-		boolean isSuccess=true;
+
+	public String saveEmployee(final Employee employee) {
+		boolean isSuccess = true;
 		try {
-		Session session=factory.openSession();
-		Transaction tx=session.beginTransaction();
-		session.save(employee);
-		tx.commit();
-		}catch(ConstraintViolationException e) {
-			isSuccess =false;
+			Session session = EmployeeDAOImpl.factory.openSession();
+			Transaction tx = session.beginTransaction();
+			session.save(employee);
+			tx.commit();
 		}
-		if(isSuccess)
-		return "Registration Successful";
+		catch (ConstraintViolationException e) {
+			isSuccess = false;
+		}
+		if (isSuccess) return "Registration Successful";
 		else
-		return employee.getEmpId()+" is already available" ;
+			return employee.getEmpId() + " is already available";
 	}
+
 	public List<Employee> fetchAllEmployees() {
-		
-		Session session=factory.openSession();
-		Criteria crit=session.createCriteria(Employee.class);
-		//List<Employee> list=crit.list();
+
+		Session session = EmployeeDAOImpl.factory.openSession();
+		Criteria crit = session.createCriteria(Employee.class);
+		// List<Employee> list=crit.list();
 		return crit.list();
 	}
-	public List<Employee> fetchEmloyeeByEmpId(String empId) {
-		
-		Session session=factory.openSession();
-		Criteria crit=session.createCriteria(Employee.class);
-		//Criterion criterion=Restrictions.eq("empId", empId);
+
+	public List<Employee> fetchEmloyeeByEmpId(final String empId) {
+
+		Session session = EmployeeDAOImpl.factory.openSession();
+		Criteria crit = session.createCriteria(Employee.class);
+		// Criterion criterion=Restrictions.eq("empId", empId);
 		crit.add(Restrictions.eq("empId", Integer.parseInt(empId)));
-		//List list=crit.list();
+		// List list=crit.list();
 		return crit.list();
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nt.controller.beans.EmployeeRequestBean;
+import com.nt.controller.beans.EmployeeResponseBean;
 import com.nt.employee.service.EmployeeService;
 
 @Controller
@@ -28,7 +29,7 @@ public class EmployeeController {
 		return service;
 	}
 
-	public void setService(EmployeeService service) {
+	public void setService(final EmployeeService service) {
 		this.service = service;
 	}
 
@@ -38,44 +39,43 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody String saveEmployee(@RequestBody EmployeeRequestBean employee) {
-		log.trace("EmployeeController.saveEmployee() entry");
+	public @ResponseBody String saveEmployee(@RequestBody final EmployeeRequestBean employee) {
+		EmployeeController.log.trace("EmployeeController.saveEmployee() entry");
 		if (employee != null) {
-			log.debug("Requst received"+employee);
+			EmployeeController.log.debug("Requst received" + employee);
 			if (employee.getEmpId() <= 0) {
-				log.debug("invalid value " + employee.getEmpId());
+				EmployeeController.log.debug("invalid value " + employee.getEmpId());
 				return "EmpId is not Valid";
 			}
 			else if (employee.getEname() == null || employee.getEname().isEmpty() == true) {
-				log.debug("invalid value " + employee.getEname());
+				EmployeeController.log.debug("invalid value " + employee.getEname());
 				return "EmpName is not valid";
 			}
 			else if (employee.getSalary() <= 0) {
-				log.debug("invalid value " + employee.getSalary());
+				EmployeeController.log.debug("invalid value " + employee.getSalary());
 				return "Invalid salary amount";
 			}
 			else if (employee.getDesg() == null || employee.getDesg().isEmpty() == true) {
-				log.debug("invalid value " + employee.getDesg());
+				EmployeeController.log.debug("invalid value " + employee.getDesg());
 				return "Invalid Designation";
 			}
 		}
-		else {
+		else
 			return "Request Object Null";
-		}
-		log.trace("EmployeeController.saveEmployee() exit");
+		EmployeeController.log.trace("EmployeeController.saveEmployee() exit");
 		return service.insertEmployee(employee);
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody List<EmployeeRequestBean> displayAllEmployees() {
+	public @ResponseBody List<EmployeeResponseBean> displayAllEmployees() {
 
-		List<EmployeeRequestBean> listEmployee = service.getAllEmployees();
+		List<EmployeeResponseBean> listEmployee = service.getAllEmployees();
 		return listEmployee;
 	}
 
 	@RequestMapping(value = "/listEmp/{empId}", method = RequestMethod.GET)
-	public @ResponseBody List<EmployeeRequestBean> displayEmployeeByEmpId(@PathVariable String empId) {
-		List<EmployeeRequestBean> list = service.getEmployeeByEmpId(empId);
+	public @ResponseBody List<EmployeeResponseBean> displayEmployeeByEmpId(@PathVariable final String empId) {
+		List<EmployeeResponseBean> list = service.getEmployeeByEmpId(empId);
 		return list;
 	}
 

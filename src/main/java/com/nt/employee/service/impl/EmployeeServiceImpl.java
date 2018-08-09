@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.nt.controller.beans.EmployeeRequestBean;
+import com.nt.controller.beans.EmployeeResponseBean;
 import com.nt.employee.dao.service.EmployeeDAO;
 import com.nt.employee.service.EmployeeService;
 import com.nt.entity.Employee;
@@ -26,59 +27,53 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return dao;
 	}
 
-	public void setDao(EmployeeDAO dao) {
+	public void setDao(final EmployeeDAO dao) {
 		this.dao = dao;
 	}
 
-	public String insertEmployee(EmployeeRequestBean employee) {
-		log.trace("EmployeeServiceImpl.insertEmployee() method entry with request " + employee);
+	public String insertEmployee(final EmployeeRequestBean employee) {
+		EmployeeServiceImpl.log.trace("EmployeeServiceImpl.insertEmployee() method entry with request " + employee);
 		Employee emp = new Employee();
 		if (employee == null) {
-			log.debug("employee object is null" + employee);
+			EmployeeServiceImpl.log.debug("employee object is null" + employee);
 			return "Null object received";
 		}
 		else {
-			if (employee.getEmpId() > 0) {
-				emp.setEmpId(employee.getEmpId());
-			}
+			if (employee.getEmpId() > 0) emp.setEmpId(employee.getEmpId());
 			else {
-				log.debug("Invalid employee Id " + employee.getEmpId());
+				EmployeeServiceImpl.log.debug("Invalid employee Id " + employee.getEmpId());
 				return "Invalid employeeId";
 			}
 			if (employee.getDesg() == null || employee.getDesg().isEmpty()) {
-				log.debug("Invalid Designation" + employee.getDesg());
+				EmployeeServiceImpl.log.debug("Invalid Designation" + employee.getDesg());
 				return "Invalid Designation";
 			}
-			else {
+			else
 				emp.setDesg(employee.getDesg());
-			}
 			if (employee.getEname() == null || employee.getEname().isEmpty()) {
-				log.debug("Invalid Empoyee Name" + employee.getEname());
+				EmployeeServiceImpl.log.debug("Invalid Empoyee Name" + employee.getEname());
 				return "Invalid Empoyee Name";
 			}
-			else {
+			else
 				emp.setEname(employee.getEname());
-			}
-			if (employee.getSalary() > 0 && employee.getSalary() < 30000) {
-				emp.setSalary(employee.getSalary());
-			}
+			if (employee.getSalary() > 0 && employee.getSalary() < 30000) emp.setSalary(employee.getSalary());
 			else {
-				log.debug("Invalid Salary" + employee.getSalary());
+				EmployeeServiceImpl.log.debug("Invalid Salary" + employee.getSalary());
 				return "Invalid Salary";
 			}
 			dao.saveEmployee(emp);
 		}
 
-		log.trace("EmployeeServiceImpl.insertEmployee() method exit");
-		return 	"Registration Successful";
+		EmployeeServiceImpl.log.trace("EmployeeServiceImpl.insertEmployee() method exit");
+		return "Registration Successful";
 	}
 
-	public List<EmployeeRequestBean> getAllEmployees() {
+	public List<EmployeeResponseBean> getAllEmployees() {
 		List<Employee> listEmployee = dao.fetchAllEmployees();
-		List<EmployeeRequestBean> list = new ArrayList<EmployeeRequestBean>();
+		List<EmployeeResponseBean> list = new ArrayList<EmployeeResponseBean>();
 		for (Iterator<Employee> iterator = listEmployee.iterator(); iterator.hasNext();) {
-			Employee employee = (Employee) iterator.next();
-			EmployeeRequestBean bean = new EmployeeRequestBean();
+			Employee employee = iterator.next();
+			EmployeeResponseBean bean = new EmployeeResponseBean();
 			bean.setEmpId(employee.getEmpId());
 			bean.setEname(employee.getEname());
 			bean.setDesg(employee.getDesg());
@@ -89,12 +84,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	}
 
-	public List<EmployeeRequestBean> getEmployeeByEmpId(String empId) {
+	public List<EmployeeResponseBean> getEmployeeByEmpId(final String empId) {
 		List<Employee> listEmployee = dao.fetchEmloyeeByEmpId(empId);
-		List<EmployeeRequestBean> employeeBean = new ArrayList<EmployeeRequestBean>();
+		List<EmployeeResponseBean> employeeBean = new ArrayList<EmployeeResponseBean>();
 		for (Iterator<Employee> iterator = listEmployee.iterator(); iterator.hasNext();) {
-			Employee employee = (Employee) iterator.next();
-			EmployeeRequestBean bean = new EmployeeRequestBean();
+			Employee employee = iterator.next();
+			EmployeeResponseBean bean = new EmployeeResponseBean();
 			bean.setEname(employee.getEname());
 			bean.setDesg(employee.getDesg());
 			bean.setSalary(employee.getSalary());
