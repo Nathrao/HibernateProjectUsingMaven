@@ -12,11 +12,13 @@ import org.hibernate.criterion.Criterion;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.nt.employee.dao.service.impl.EmployeeDAOImpl;
 import com.nt.entity.Employee;
 
+@Ignore
 public class EmployeeDAOImplTest {
 
 	private EmployeeDAOImpl	dao;
