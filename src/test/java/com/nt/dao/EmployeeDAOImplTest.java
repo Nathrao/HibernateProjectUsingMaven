@@ -1,8 +1,5 @@
 package com.nt.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +28,7 @@ public class EmployeeDAOImplTest {
 	private Criterion		criterion;
 
 	@Before
-	public void setcUp() {
+	public void setUp() {
 
 		dao = new EmployeeDAOImpl();
 		session = EasyMock.createMock(Session.class);
@@ -39,7 +37,7 @@ public class EmployeeDAOImplTest {
 		crit = EasyMock.createMock(Criteria.class);
 		list = EasyMock.createMock(List.class);
 		criterion = EasyMock.createMock(Criterion.class);
-		dao.setFactory(factory);
+		EmployeeDAOImpl.setFactory(factory);
 	}
 
 	@Test
@@ -49,14 +47,13 @@ public class EmployeeDAOImplTest {
 		employee.setEname("NAth");
 		employee.setDesg("SE");
 		employee.setSalary(1234);
-
 		EasyMock.expect(factory.openSession()).andReturn(session);
 		EasyMock.replay(factory);
 		EasyMock.expect(session.beginTransaction()).andReturn(tx);
 		EasyMock.expect(session.save(EasyMock.isA(Employee.class))).andReturn("67");
 		EasyMock.replay(session);
 		String result = dao.saveEmployee(employee);
-		assertEquals("Registration Successful", result);
+		Assert.assertEquals("Registration Successful", result);
 	}
 
 	@Test
@@ -69,7 +66,7 @@ public class EmployeeDAOImplTest {
 		EasyMock.expect(crit.list()).andReturn(bean);
 		EasyMock.replay(crit);
 		List<Employee> list = dao.fetchAllEmployees();
-		assertNotNull(list);
+		Assert.assertNotNull(list);
 	}
 
 	@Test
@@ -83,7 +80,7 @@ public class EmployeeDAOImplTest {
 		EasyMock.expect(crit.list()).andReturn(bean);
 		EasyMock.replay(crit);
 		List<Employee> list = dao.fetchEmloyeeByEmpId("123");
-		assertNotNull(list);
+		Assert.assertNotNull(list);
 	}
 
 	@After
