@@ -1,17 +1,23 @@
 package com.nt.controller.beans;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public class EmployeeRequestBean {
-	
-	public int empId;
+	public int	  empId;
+	@NotNull(message = "name is null")
 	public String ename;
+	@NotNull(message = "designation is null")
 	public String desg;
-	public int salary;
+	public int	  salary;
 
 	public int getEmpId() {
 		return empId;
 	}
 
-	public void setEmpId(int empId) {
+	public void setEmpId(final int empId) {
 		this.empId = empId;
 	}
 
@@ -19,7 +25,7 @@ public class EmployeeRequestBean {
 		return ename;
 	}
 
-	public void setEname(String ename) {
+	public void setEname(final String ename) {
 		this.ename = ename;
 	}
 
@@ -27,7 +33,7 @@ public class EmployeeRequestBean {
 		return desg;
 	}
 
-	public void setDesg(String desg) {
+	public void setDesg(final String desg) {
 		this.desg = desg;
 	}
 
@@ -35,7 +41,7 @@ public class EmployeeRequestBean {
 		return salary;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(final int salary) {
 		this.salary = salary;
 	}
 

@@ -7,11 +7,16 @@ import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.nt.controller.beans.EmployeeRequestBean;
 import com.nt.controller.beans.EmployeeResponseBean;
 import com.nt.employee.service.EmployeeService;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
 public class EmpControllerTest {
 
 	private EmployeeController controller;

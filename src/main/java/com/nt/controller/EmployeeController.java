@@ -2,6 +2,8 @@ package com.nt.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,7 +41,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody String saveEmployee(@RequestBody final EmployeeRequestBean employee) {
+	public @ResponseBody String saveEmployee(@Valid @RequestBody final EmployeeRequestBean employee) {
 		EmployeeController.log.trace("EmployeeController.saveEmployee() entry");
 		if (employee != null) {
 			EmployeeController.log.debug("Requst received" + employee);

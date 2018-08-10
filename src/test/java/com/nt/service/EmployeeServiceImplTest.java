@@ -1,18 +1,21 @@
 package com.nt.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.nt.controller.beans.EmployeeRequestBean;
 import com.nt.employee.dao.service.EmployeeDAO;
 import com.nt.employee.service.impl.EmployeeServiceImpl;
 import com.nt.entity.Employee;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
 public class EmployeeServiceImplTest {
 
 	private EmployeeServiceImpl	service;
@@ -29,7 +32,7 @@ public class EmployeeServiceImplTest {
 	@Test
 	public void testInsertEmployee_WithNull() {
 		String result = service.insertEmployee(null);
-		assertEquals("Null object received", result);
+		Assert.assertEquals("Null object received", result);
 	}
 
 	@Test
@@ -44,9 +47,9 @@ public class EmployeeServiceImplTest {
 		bean.setEname("nath");
 		bean.setDesg("SE");
 		bean.setSalary(2000);
-		when(dao.saveEmployee(bean)).thenReturn("Registration Successful");
+		Mockito.when(dao.saveEmployee(bean)).thenReturn("Registration Successful");
 		String result = service.insertEmployee(employee);
-		assertEquals("Registration Successful", result);
+		Assert.assertEquals("Registration Successful", result);
 	}
 
 	@After
