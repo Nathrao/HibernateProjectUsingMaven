@@ -1,4 +1,4 @@
-package com.nt.controller.beans;
+package com.jr.controller.beans;
 
 import javax.validation.constraints.NotNull;
 

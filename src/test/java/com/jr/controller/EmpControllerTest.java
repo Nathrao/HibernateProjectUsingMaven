@@ -1,4 +1,4 @@
-package com.nt.controller;
+package com.jr.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.controller.beans.EmployeeResponseBean;
-import com.nt.employee.service.EmployeeService;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.controller.beans.EmployeeResponseBean;
+import com.jr.employee.service.EmployeeService;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest

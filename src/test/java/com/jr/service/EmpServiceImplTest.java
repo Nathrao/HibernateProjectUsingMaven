@@ -1,4 +1,4 @@
-package com.nt.service;
+package com.jr.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.controller.beans.EmployeeResponseBean;
-import com.nt.employee.dao.service.EmployeeDAO;
-import com.nt.employee.service.impl.EmployeeServiceImpl;
-import com.nt.entity.Employee;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.controller.beans.EmployeeResponseBean;
+import com.jr.employee.dao.service.EmployeeDAO;
+import com.jr.employee.service.impl.EmployeeServiceImpl;
+import com.jr.entity.Employee;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest

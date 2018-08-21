@@ -1,4 +1,4 @@
-package com.nt.employee.dao.service.impl;
+package com.jr.employee.dao.service.impl;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 
-import com.nt.employee.dao.service.EmployeeDAO;
-import com.nt.entity.Employee;
-import com.nt.util.HibernateUtil;
+import com.jr.employee.dao.service.EmployeeDAO;
+import com.jr.entity.Employee;
+import com.jr.util.HibernateUtil;
 
 @Repository("EmployeeDAO")
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -60,5 +60,4 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		// List list=crit.list();
 		return crit.list();
 	}
-
 }

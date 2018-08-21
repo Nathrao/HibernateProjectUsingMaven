@@ -1,4 +1,4 @@
-package com.nt.employee.service.impl;
+package com.jr.employee.service.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.controller.beans.EmployeeResponseBean;
-import com.nt.employee.dao.service.EmployeeDAO;
-import com.nt.employee.service.EmployeeService;
-import com.nt.entity.Employee;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.controller.beans.EmployeeResponseBean;
+import com.jr.employee.dao.service.EmployeeDAO;
+import com.jr.employee.service.EmployeeService;
+import com.jr.entity.Employee;
 
 @Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {

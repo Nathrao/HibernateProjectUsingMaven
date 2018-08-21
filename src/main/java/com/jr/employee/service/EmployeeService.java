@@ -1,9 +1,9 @@
-package com.nt.employee.service;
+package com.jr.employee.service;
 
 import java.util.List;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.controller.beans.EmployeeResponseBean;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.controller.beans.EmployeeResponseBean;
 
 public interface EmployeeService {
 	public String insertEmployee(EmployeeRequestBean employee);

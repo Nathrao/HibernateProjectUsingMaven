@@ -1,4 +1,4 @@
-package com.nt.service;
+package com.jr.service;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -9,10 +9,10 @@ import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.employee.dao.service.EmployeeDAO;
-import com.nt.employee.service.impl.EmployeeServiceImpl;
-import com.nt.entity.Employee;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.employee.dao.service.EmployeeDAO;
+import com.jr.employee.service.impl.EmployeeServiceImpl;
+import com.jr.entity.Employee;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest

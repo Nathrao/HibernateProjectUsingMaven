@@ -1,4 +1,4 @@
-package com.nt.dao;
+package com.jr.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.nt.employee.dao.service.impl.EmployeeDAOImpl;
-import com.nt.entity.Employee;
+import com.jr.employee.dao.service.impl.EmployeeDAOImpl;
+import com.jr.entity.Employee;
 
 @Ignore
 public class EmployeeDAOImplTest {

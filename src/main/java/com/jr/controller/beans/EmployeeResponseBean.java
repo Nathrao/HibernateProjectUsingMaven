@@ -1,4 +1,4 @@
-package com.nt.controller.beans;
+package com.jr.controller.beans;
 
 public class EmployeeResponseBean {
 	public int	  empId;

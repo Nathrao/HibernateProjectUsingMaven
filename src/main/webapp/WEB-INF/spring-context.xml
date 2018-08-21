@@ -23,6 +23,6 @@
 				</list>
 			</property>
 		</bean>
-		<context:component-scan base-package="com.nt" />
+		<context:component-scan base-package="com.jr" />
 		<mvc:annotation-driven />
 </beans>

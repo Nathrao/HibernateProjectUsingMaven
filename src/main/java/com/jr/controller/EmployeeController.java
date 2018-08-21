@@ -1,4 +1,4 @@
-package com.nt.controller;
+package com.jr.controller;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.controller.beans.EmployeeResponseBean;
-import com.nt.employee.service.EmployeeService;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.controller.beans.EmployeeResponseBean;
+import com.jr.employee.service.EmployeeService;
 
 @Controller
 @RequestMapping("/employeeDetails")
@@ -80,5 +80,4 @@ public class EmployeeController {
 		List<EmployeeResponseBean> list = service.getEmployeeByEmpId(empId);
 		return list;
 	}
-
 }

@@ -1,19 +1,16 @@
-package com.nt.controller;
+package com.jr.controller;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.nt.controller.beans.EmployeeRequestBean;
-import com.nt.employee.service.EmployeeService;
+import com.jr.controller.beans.EmployeeRequestBean;
+import com.jr.employee.service.EmployeeService;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest
@@ -23,9 +20,9 @@ public class EmployeeControllerTestMockitoRule {
 	public EmployeeService service;
 	EmployeeController	   controller;
 
-	@Rule
-	public MockitoRule rule = MockitoJUnit.rule();
-
+	/*
+	 * @Rule public MockitoRule rule = MockitoJUnit.rule();
+	 */
 	@Before
 	public void setUp() {
 		controller = new EmployeeController();
@@ -49,5 +46,4 @@ public class EmployeeControllerTestMockitoRule {
 		employee.setSalary(sal);
 		return employee;
 	}
-
 }
